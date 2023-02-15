@@ -5,5 +5,6 @@ class TripsController < ApplicationController
 
   def new
     @trip = Trip.new
+    @hotel = Hotel.new
   end
 end
