@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :trips do
+    resources :to_transports
+    resources :there_transports
+    resources :hotels
     resources :ratings, only: [:create]
   end
 end

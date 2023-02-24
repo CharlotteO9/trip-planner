@@ -1,25 +1,17 @@
-<h1>New Trip</h1>
+<div class="container">
+  <h1>New Trip</h1>
 
-<h4><strong>Step 1</strong></h4>
-<h6>Define your trip</h6>
-<%= simple_form_for @trip do |f| %>
-  <%= f.input :title %>
-  <%= f.input :destination %>
-  <%= f.input :number_people %>
-  <%= f.input :start_date %>
-  <%= f.input :end_date_date %>
-  <%= f.input :photo %>
-  <%= f.button :submit %>
-<% end %>
-<%# days %>
+  <h4><strong>Step 1</strong></h4>
+  <h6>Define your trip</h6>
+  <%= simple_form_for @trip do |f| %>
+    <%= f.input :title %>
+    <%= f.input :destination %>
+    <%= f.input :number_people %>
+    <%= f.input :day %>
+    <%= f.input :start_date %>
+    <%= f.input :end_date %>
+    <%= f.input :photo %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  <% end %>
 
-<h4><strong>Step 2</strong></h4>
-<h6>Transport</h6>
-<%# Transport %>
-<h6>Hotel</h6>
-<%= simple_form_for [@trip, @hotel] do |f| %>
-  <%= f.input :name %>
-  <%= f.input :address %>
-  <%= f.input :price_night_person %>
-  <%= f.input :breakfast %>
-<% end %>
+</div>

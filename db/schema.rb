@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_04_160703) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_24_163134) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -109,19 +109,38 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_04_160703) do
     t.index ["trip_id"], name: "index_ratings_on_trip_id"
   end
 
+  create_table "there_transports", force: :cascade do |t|
+    t.string "variety"
+    t.integer "price_day_person"
+    t.bigint "trip_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trip_id"], name: "index_there_transports_on_trip_id"
+  end
+
+  create_table "to_transports", force: :cascade do |t|
+    t.string "variety"
+    t.integer "price_person"
+    t.bigint "trip_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trip_id"], name: "index_to_transports_on_trip_id"
+  end
+
   create_table "trips", force: :cascade do |t|
     t.string "title"
     t.string "destination"
     t.string "photo"
     t.integer "number_people"
     t.date "start_date"
-    t.string "end_date_date"
     t.text "comment"
     t.integer "activity_budget"
     t.integer "food_drink_budget"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "day"
+    t.date "end_date"
     t.index ["user_id"], name: "index_trips_on_user_id"
   end
 
@@ -151,5 +170,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_04_160703) do
   add_foreign_key "hotel_bookings", "hotels"
   add_foreign_key "hotels", "trips"
   add_foreign_key "ratings", "trips"
+  add_foreign_key "there_transports", "trips"
+  add_foreign_key "to_transports", "trips"
   add_foreign_key "trips", "users"
 end
