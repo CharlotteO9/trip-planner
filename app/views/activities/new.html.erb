@@ -2,5 +2,14 @@
   <h4><strong>Step 3 </strong></h4>
 
 
+  <h6>Activities wish list</h6>
+  <%= simple_form_for [@trip, @activies] do |f| %>
+    <%= f.input :title %>
+    <%= f.input :duration %>
+    <%= f.input :address %>
+    <%= f.input :price_person %>
+    <%= f.input :comment %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  <% end %>
 
 </div>
