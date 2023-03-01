@@ -1,0 +1,10 @@
+<div class="container">
+  <h4><strong>Step 2 - bis</strong></h4>
+
+  <h6>Transport there</h6>
+  <%= simple_form_for [@trip, @transport_there] do |f| %>
+    <%= f.input :variety %>
+    <%= f.input :price_day_person %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  <% end %>
+</div>

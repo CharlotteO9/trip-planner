@@ -7,9 +7,14 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :trips do
-    resources :to_transports
-    resources :there_transports
-    resources :hotels
+    resources :to_transports, only: [:new, :create]
+    resources :there_transports, only: [:new, :create]
+    resources :hotels, only: [:new, :create, :show] do
+      resources :hotel_bookings, only: [:new, :create]
+    end
+    resources :activities, only: [:new, :create]
+    resources :food_drinks, only: [:new, :create]
     resources :ratings, only: [:create]
   end
+
 end

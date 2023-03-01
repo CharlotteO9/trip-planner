@@ -1,0 +1,4 @@
+<%= simple_form_for [@trip, @booked_hotel, @hotel_booking] do |f| %>
+  <%= f.input :day_id, prompt: "Select a day", collection: @days.map{ |day| [day.id, day.number] }, label_method: :second, value_method: :first %>
+  <%= f.button :submit, class: "btn btn-primary" %>
+<% end %>

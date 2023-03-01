@@ -1,0 +1,9 @@
+<p>
+  <%= @booked_hotel.name %> -
+  <%= @booked_hotel.price_night_person %>€ / night / person
+  <% @booked_hotel.hotel_bookings.each do |booking| %>
+    - day n°<%= booking.day.number %>
+  <% end %>
+</p>
+
+<%= render "hotel_bookings/new" %>

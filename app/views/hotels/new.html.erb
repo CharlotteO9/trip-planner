@@ -1,0 +1,26 @@
+<div class="container">
+  <h4><strong>Step 2 - ter </strong></h4>
+
+  <h6>Hotels</h6>
+  <%= simple_form_for [@trip, @hotel] do |f| %>
+    <%= f.input :name %>
+    <%= f.input :address %>
+    <%= f.input :price_night_person %>
+    <%= f.input :breakfast %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  <% end %>
+
+  <% @booked_hotels.each do |booked_hotel| %>
+    <p>
+      <%= booked_hotel.name %> -
+      <%= booked_hotel.price_night_person %>€ / night / person
+      <% booked_hotel.hotel_bookings.each do |booking| %>
+        - day n°<%= booking.day.number %>
+      <% end %>
+    </p>
+    <%= link_to "Select a day", trip_hotel_path(@trip, booked_hotel) %>
+  <% end %>
+
+  <%= link_to "Next step", new_trip_activity_path(@trip) %>
+
+</div>

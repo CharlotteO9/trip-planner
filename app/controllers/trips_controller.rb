@@ -9,8 +9,16 @@ class TripsController < ApplicationController
 
   def create
     @trip = Trip.new(trip_params)
+    i = @trip.day
     if @trip.save
-      redirect_to trip_path(@trip)
+      until i.zero?
+        Day.create!(
+          number: i,
+          trip: @trip
+        )
+        i -= 1
+      end
+      redirect_to new_trip_to_transport_path(@trip)
     else
       render :new, status: :unprocessable_entity, notice: "didn't work"
     end
@@ -18,9 +26,6 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find(params[:id])
-    @transport_to = ToTransport.new
-    @transport_there = ThereTransport.new
-    @hotel = Hotel.new
   end
 
   private
