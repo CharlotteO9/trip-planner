@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_24_163134) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_09_145334) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,6 +26,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_163134) do
     t.datetime "updated_at", null: false
     t.index ["day_id"], name: "index_activities_on_day_id"
     t.index ["trip_id"], name: "index_activities_on_trip_id"
+  end
+
+  create_table "activity_bookings", force: :cascade do |t|
+    t.bigint "activity_id", null: false
+    t.bigint "day_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["activity_id"], name: "index_activity_bookings_on_activity_id"
+    t.index ["day_id"], name: "index_activity_bookings_on_day_id"
   end
 
   create_table "budgets", force: :cascade do |t|
@@ -158,8 +167,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_163134) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "activities", "days"
   add_foreign_key "activities", "trips"
+  add_foreign_key "activity_bookings", "activities"
+  add_foreign_key "activity_bookings", "days"
   add_foreign_key "budgets", "trips"
   add_foreign_key "days", "trips"
   add_foreign_key "expenses", "budgets"

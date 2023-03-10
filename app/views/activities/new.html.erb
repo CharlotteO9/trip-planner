@@ -1,15 +1,23 @@
 <div class="container">
   <h4><strong>Step 3 </strong></h4>
 
-
   <h6>Activities wish list</h6>
-  <%= simple_form_for [@trip, @activies] do |f| %>
+  <%= simple_form_for [@trip, @activity] do |f| %>
     <%= f.input :title %>
-    <%= f.input :duration %>
+    <%= f.input :duration, collection: %w[15mins 30mins 1h 1h30 2h 2h30 3h 3h30 4h 4h30 5h] %>
     <%= f.input :address %>
     <%= f.input :price_person %>
     <%= f.input :comment %>
     <%= f.button :submit, class: "btn btn-primary" %>
+  <% end %>
+
+  <% @booked_activities.each do |booked_activity| %>
+    <p>
+      <%= booked_activity.title %> -
+      <%= booked_activity.duration %>mins -
+      <%= booked_activity.price_person %>€ / person -
+    </p>
+    <%= link_to "Select a day", trip_hotel_path(@trip, booked_hotel) %>
   <% end %>
 
 </div>
