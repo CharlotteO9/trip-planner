@@ -10,6 +10,7 @@ class ActivitiesController < ApplicationController
     @trip = Trip.find(params[:trip_id])
     @activity.trip = @trip
     if @activity.save
+      raise #ça ne marche pas
       redirect_to new_trip_activity_path(@trip), notice: "ok"
     else
       render :new, status: :unprocessable_entity, notice: "didn't work"
