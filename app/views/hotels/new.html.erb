@@ -19,6 +19,8 @@
       <% end %>
     </p>
     <%= link_to "Select a day", trip_hotel_path(@trip, booked_hotel) %>
+    <%= link_to "Modify", edit_trip_hotel_path(@trip, booked_hotel) %>
+    <%= link_to "Delete", trip_hotel_path(@trip, booked_hotel), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
   <% end %>
 
   <%= link_to "Next step", new_trip_activity_path(@trip) %>

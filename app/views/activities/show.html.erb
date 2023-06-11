@@ -1,0 +1,10 @@
+<p>
+  <%= @booked_activity.title %> -
+  <%= @booked_activity.duration %>mins -
+  <%= @booked_activity.price_person %>€ / person
+  <% @booked_activity.activity_bookings.each do |booking| %>
+    - day n°<%= booking.day.number %>
+  <% end %>
+</p>
+
+<%= render "activity_bookings/new" %>

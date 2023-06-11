@@ -1,0 +1,10 @@
+<div class="container">
+  <h4><strong>Modify the hotel</strong></h4>
+    <%= simple_form_for [@trip, @hotel] do |f| %>
+      <%= f.input :name %>
+      <%= f.input :address %>
+      <%= f.input :price_night_person %>
+      <%= f.input :breakfast %>
+      <%= f.button :submit, class: "btn btn-primary" %>
+    <% end %>
+</div>

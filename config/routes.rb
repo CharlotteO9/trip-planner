@@ -9,10 +9,12 @@ Rails.application.routes.draw do
   resources :trips do
     resources :to_transports, only: [:new, :create]
     resources :there_transports, only: [:new, :create]
-    resources :hotels, only: [:new, :create, :show] do
+    resources :hotels, only: [:new, :create, :show, :destroy, :edit, :update] do
       resources :hotel_bookings, only: [:new, :create]
     end
-    resources :activities, only: [:new, :create]
+    resources :activities, only: [:new, :create, :show, :destroy, :edit, :update] do
+      resources :activity_bookings, only: [:new, :create]
+    end
     resources :food_drinks, only: [:new, :create]
     resources :ratings, only: [:create]
   end

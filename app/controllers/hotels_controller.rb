@@ -27,6 +27,23 @@ class HotelsController < ApplicationController
     end
   end
 
+  def edit
+    @trip = Trip.find(params[:trip_id])
+    @hotel = Hotel.find(params[:id])
+  end
+
+  def update
+    @trip = Trip.find(params[:trip_id])
+    @hotel = Hotel.find(params[:id])
+    @hotel.update(hotel_params)
+    redirect_to new_trip_hotel_path(@trip), notice: "Hotel modified!"
+  end
+
+  def destroy
+    @hotel = Hotel.find(params[:id])
+    @hotel.destroy
+  end
+
   private
 
   def hotel_params

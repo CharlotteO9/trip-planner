@@ -1,5 +1,8 @@
-<h1>Trip Planner</h1>
+<h1>Trip Planner HOME PAGE</h1>
 
-<%= link_to "My trips", trips_path %>
-
-<%= link_to "Create a trip", new_trip_path %>
+<% if user_signed_in? %>
+  <%= link_to "Create a new trip", new_trip_path %>
+  <%= link_to "My trips", trips_path %>
+<% else %>
+  <%= link_to "Go on an adventure", new_user_session_path %>
+<% end %>

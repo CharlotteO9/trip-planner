@@ -15,9 +15,16 @@
     <p>
       <%= booked_activity.title %> -
       <%= booked_activity.duration %>mins -
-      <%= booked_activity.price_person %>€ / person -
+      <%= booked_activity.price_person %>€ / person
+      <% booked_activity.activity_bookings.each do |booking| %>
+        - day n°<%= booking.day.number %>
+      <% end %>
     </p>
-    <%= link_to "Select a day", trip_hotel_path(@trip, booked_hotel) %>
+    <%= link_to "Select a day", trip_activity_path(@trip, booked_activity) %>
+    <%= link_to "Modify", edit_trip_activity_path(@trip, booked_activity) %>
+    <%= link_to "Delete", trip_activity_path(@trip, booked_activity), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
   <% end %>
+
+  <%= link_to "Next step", new_trip_food_drink_path(@trip) %>
 
 </div>
